@@ -185,7 +185,9 @@ def _(go):
                 Plotly Figure object, or None if Plotly is not installed.
             """
             if go is None:
-                raise ImportError("Plotly is required for plotting. Please install plotly.")
+                raise ImportError(
+                    "Plotly is required for plotting. Please install plotly."
+                )
 
             if x_range is None:
                 x_max = math.ceil(self.span * 10) / 10
@@ -219,9 +221,9 @@ def _(go):
                 )
             return fig
 
-
-
     return (Catenary,)
+
+
 @app.cell
 def _():
     # --- Constants for constraints ---
