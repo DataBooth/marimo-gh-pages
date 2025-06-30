@@ -1,0 +1,30 @@
+[global]
+output_dir = "_site"
+#template = "templates/tailwind.html.j2"
+template = "templates/databooth.html.j2"
+notebooks_dir = "notebooks"
+apps_dir = "apps"
+assets_dir = "public"
+
+[targets.testing]
+enabled = true
+dir = "_site/testing"
+
+[targets.github_pages]
+enabled = true
+dir = "_site/github_pages"
+
+[targets.zola]
+enabled = false
+dir = "_site/zola"
+zola_content_dir = "/path/to/zola/static"
+
+[targets.huggingface]
+enabled = false
+dir = "_site/huggingface"
+repo_id = "your-username/your-repo"
+
+[targets.posit_connect]
+enabled = false
+dir = "_site/posit_connect"
+connect_url = "https://connect.example.com"
