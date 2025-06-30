@@ -106,10 +106,13 @@ class ConfigLoader:
 
     def get(self, section: str, key: str = None, default: Optional[any] = None) -> any:
         section_data = self.config.get(section, None)
+        print(f"Config section: {section}, key: {key}, default: {default}")
         if section_data is None:
             return default
         if key is None:
             return section_data
+        if not isinstance(key, str):
+            raise TypeError(f"Config key must be a string, got {type(key)}")
         return section_data.get(key, default)
 
 
@@ -396,7 +399,7 @@ class BuildManager:
         return None
 
     def build_all(self) -> None:
-        targets = self.config.get("targets", {})
+        targets = self.config.get("targets", default={})
         if not targets:
             logger.warning("No targets enabled in config")
             return
@@ -413,7 +416,7 @@ def main(
     target: str = None,
     output_dir: str = "_site",
     template: str = "templates/tailwind.html.j2",
-    config_path: str = "config.toml",
+    config_path: str = "config/config.toml",
 ) -> None:
     logger.info("Starting marimo build process")
     config = ConfigLoader(Path(config_path))
