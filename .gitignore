@@ -1,6 +1,7 @@
 _site/
 __marimo__
 test_output
+*.inlined.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

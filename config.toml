@@ -1,30 +1,34 @@
 [global]
 output_dir = "_site"
-#template = "templates/tailwind.html.j2"
 template = "templates/databooth.html.j2"
 notebooks_dir = "notebooks"
 apps_dir = "apps"
 assets_dir = "public"
 
-[targets.testing]
-enabled = true
-dir = "_site/testing"
-
 [targets.github_pages]
 enabled = true
 dir = "_site/github_pages"
 
-[targets.zola]
+[targets.static_site]
 enabled = false
-dir = "_site/zola"
-zola_content_dir = "/path/to/zola/static"
+dir = "_site/static_site"
+static_site_dir = "/path/to/your/static/site/content"
 
 [targets.huggingface]
 enabled = false
 dir = "_site/huggingface"
-repo_id = "your-username/your-repo"
+repo_id = "mjboothaus/test_marimo_publish"
+template = "templates/huggingface.html.j2"
+
+[targets.local]
+enabled = true
+dir = "_site/local"
+
+[targets.testing]
+enabled = true
+dir = "_site/testing"
 
 [targets.posit_connect]
 enabled = false
 dir = "_site/posit_connect"
-connect_url = "https://connect.example.com"
+connect_url = ""

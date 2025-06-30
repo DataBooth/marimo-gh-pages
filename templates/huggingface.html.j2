@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DataBooth Interactive Notebooks</title>
+  <title>Hugging Face Interactive Notebooks</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       line-height: 1.6;
-      color: #222;
+      color: #212121;
       background-color: #fff;
       padding: 0;
       margin: 0;
@@ -19,34 +19,38 @@
       padding: 0 20px;
     }
     header {
-      background-color: #0066CC;
-      color: #fff;
-      padding: 30px 0 20px 0;
+      background-color: #FFD21F;
+      color: #111;
+      padding: 32px 0 20px 0;
       text-align: center;
+      border-bottom: 4px solid #FF6F00;
     }
     .logo {
-      width: 120px;
+      width: 100px;
       height: auto;
       margin-bottom: 10px;
-      border-radius: 12px;
       background: #fff;
-      padding: 8px;
+      border-radius: 50%;
+      padding: 6px;
+      border: 2px solid #FF6F00;
+      box-shadow: 0 2px 8px rgba(255,223,50,0.08);
     }
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       margin-bottom: 10px;
       letter-spacing: 1px;
+      font-weight: bold;
     }
     .subtitle {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       margin: 0 auto 10px auto;
-      color: #e0e0e0;
+      color: #FF6F00;
     }
     .section-title {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       margin: 30px 0 10px;
       text-align: center;
-      color: #0066CC;
+      color: #FF6F00;
     }
     .cards {
       display: flex;
@@ -55,34 +59,35 @@
       margin: 20px 0;
     }
     .card {
-      background-color: #f9f9f9;
-      border: 1px solid #eee;
+      background-color: #fffbe7;
+      border: 1px solid #ffe082;
       border-radius: 8px;
       flex: 1 0 220px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      box-shadow: 0 2px 8px rgba(255,210,31,0.06);
       transition: box-shadow 0.2s;
+      position: relative;
     }
     .card:hover {
-      box-shadow: 0 4px 16px rgba(0,102,204,0.10);
+      box-shadow: 0 4px 16px rgba(255,111,0,0.10);
     }
     .card-header {
-      background-color: #eaf3fb;
+      background-color: #FFF3C0;
       padding: 12px;
       font-weight: bold;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      color: #0066CC;
+      color: #FF6F00;
     }
     .card-header.app {
-      background-color: #fff3e0;
-      color: #FF9900;
+      background-color: #FFE0B2;
+      color: #FF6F00;
     }
     .card-body {
       padding: 15px;
     }
     .card-link {
       display: inline-block;
-      background-color: #0066CC;
+      background-color: #FF6F00;
       color: white;
       padding: 7px 14px;
       border-radius: 5px;
@@ -92,21 +97,33 @@
       transition: background 0.2s;
     }
     .card-link:hover {
-      background-color: #004c99;
+      background-color: #FFD21F;
+      color: #212121;
     }
     .card-link.app {
-      background-color: #FF9900;
+      background-color: #FFD21F;
+      color: #212121;
     }
     .card-link.app:hover {
-      background-color: #c76d00;
+      background-color: #FF6F00;
+      color: #fff;
+    }
+    .databooth-credit {
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      font-size: 0.92em;
+      color: #888;
+      font-style: italic;
     }
     footer {
-      background-color: #f0f0f0;
+      background-color: #FFF3C0;
       text-align: center;
       padding: 24px 0 12px 0;
       margin-top: 40px;
       font-size: 1rem;
       color: #555;
+      border-top: 4px solid #FFD21F;
     }
     .footer-logos {
       margin-bottom: 10px;
@@ -115,9 +132,13 @@
       height: 28px;
       vertical-align: middle;
       margin-right: 10px;
+      margin-left: 10px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 2px;
     }
     .footer-links a {
-      color: #0066CC;
+      color: #FF6F00;
       margin: 0 10px;
       text-decoration: none;
     }
@@ -131,9 +152,12 @@
 <body>
   <header>
     <div class="container">
-      <h1>DataBooth Interactive Notebooks</h1>
+      <a href="https://huggingface.co/spaces" target="_blank">
+        <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face Logo" class="logo">
+      </a>
+      <h1>Hugging Face Interactive Notebooks</h1>
       <p class="subtitle">
-        Explore interactive Python notebooks and apps, powered by <a href="https://marimo.io" target="_blank" style="color:#FF9900;text-decoration:underline;">Marimo</a> and WebAssembly.
+        Explore interactive Python notebooks and apps, powered by <a href="https://marimo.io" target="_blank" style="color:#FF6F00;text-decoration:underline;">Marimo</a> and WebAssembly, hosted on <a href="https://huggingface.co/spaces" target="_blank" style="color:#FF6F00;text-decoration:underline;">Hugging Face Spaces</a>.
       </p>
     </div>
   </header>
@@ -150,6 +174,9 @@
         <div class="card-body">
           <a href="{{ notebook.html_path }}" class="card-link">Open Notebook</a>
         </div>
+        <div class="databooth-credit">
+          Created by <a href="https://www.databooth.com.au" target="_blank" style="color:#FF6F00;">DataBooth</a>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -165,6 +192,9 @@
         <div class="card-body">
           <a href="{{ app.html_path }}" class="card-link app">Open App</a>
         </div>
+        <div class="databooth-credit">
+          Created by <a href="https://www.databooth.com.au" target="_blank" style="color:#FF6F00;">DataBooth</a>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -175,22 +205,25 @@
   <footer>
     <div class="container">
       <div class="footer-logos">
-        <a href="https://www.databooth.com.au" target="_blank">
-          <img src="https://www.databooth.com.au/images/databooth-logo.png" alt="DataBooth Logo" style="height:28px;">
+        <a href="https://huggingface.co/spaces" target="_blank">
+          <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face Logo">
         </a>
         <span style="font-size:1.1em;">|</span>
         <a href="https://marimo.io" target="_blank">
-          <img src="https://raw.githubusercontent.com/marimo-team/marimo/main/docs/_static/marimo-logotype-thick.svg" alt="marimo Logo" style="height:28px;">
+          <img src="https://raw.githubusercontent.com/marimo-team/marimo/main/docs/_static/marimo-logotype-thick.svg" alt="marimo Logo">
         </a>
         <span style="font-size:1.1em;">|</span>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/WebAssembly_Logo.svg" alt="WebAssembly Logo" style="height:28px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/WebAssembly_Logo.svg" alt="WebAssembly Logo">
       </div>
       <div class="powered-by">
-        Powered by <a href="https://marimo.io" target="_blank">Marimo</a> and WebAssembly. Site generated by <a href="https://www.databooth.com.au" target="_blank">DataBooth</a>.
+        Powered by <a href="https://marimo.io" target="_blank">Marimo</a> and WebAssembly.<br>
+        Hosted on <a href="https://huggingface.co/spaces" target="_blank">Hugging Face Spaces</a>.<br>
+        Notebooks created by <a href="https://www.databooth.com.au" target="_blank">DataBooth</a>.
       </div>
       <div class="footer-links">
-        <a href="https://github.com/marimo-team/marimo" target="_blank"><Marimo GitHub</a>
+        <a href="https://github.com/marimo-team/marimo" target="_blank">Marimo GitHub</a>
         <a href="https://docs.marimo.io" target="_blank">Marimo Docs</a>
+        <a href="https://huggingface.co/spaces" target="_blank">HF Spaces</a>
         <a href="https://www.databooth.com.au" target="_blank">DataBooth</a>
       </div>
       <p style="margin-top:10px;">Licensed under <a href="https://github.com/marimo-team/marimo/blob/main/LICENSE" target="_blank">Apache License 2.0</a></p>

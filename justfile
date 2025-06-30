@@ -9,8 +9,8 @@ build:
     uv run build.py
 
 # Build site for testing target only
-build-testing:
-    uv run build.py --target testing
+build-testing template="databooth.html.j2":
+    uv run build.py --target testing --template {{template}}
 
 # Serve the testing site locally (using Python's http.server)
 serve-testing:

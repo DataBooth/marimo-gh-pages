@@ -30,7 +30,6 @@ def _():
 @app.cell
 def _():
     import math
-    import plotly.graph_objs as go
     from scipy.optimize import minimize_scalar
 
     return
@@ -38,7 +37,7 @@ def _():
 
 @app.cell
 def _():
-    from community.bubble_cosh_databooth import Catenary
+    from local_module.caternary_py.bubble_cosh import Catenary
 
     return (Catenary,)
 

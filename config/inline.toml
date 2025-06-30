@@ -1,0 +1,3 @@
+[import_inline]
+whitelist = ["numpy", "pandas", "plotly", "scipy"]
+blacklist = ["local_module"]
