@@ -44,7 +44,7 @@ jobs:
       - name: 📤 Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site  # Directory containing the built site
+          path: _site/github_pages  # Directory containing the built site
 
   # The deploy job publishes the built site to GitHub Pages
   deploy:
