@@ -1,21 +1,18 @@
+import ast
 import os
+import shutil
 import subprocess
 import tomllib
 from pathlib import Path
 from typing import Dict, List, Optional
+
+import fire
 import jinja2
 from dotenv import load_dotenv
 from loguru import logger
-import shutil
-
-# import httpx
-import fire
 
 # Load environment variables from .env
 load_dotenv()
-
-import ast
-from pathlib import Path
 
 
 def find_local_imports(
@@ -106,7 +103,7 @@ class ConfigLoader:
 
     def get(self, section: str, key: str = None, default: Optional[any] = None) -> any:
         section_data = self.config.get(section, None)
-        print(f"Config section: {section}, key: {key}, default: {default}")
+        # print(f"Config section: {section}, key: {key}, default: {default}")
         if section_data is None:
             return default
         if key is None:
