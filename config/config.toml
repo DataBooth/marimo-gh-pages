@@ -15,10 +15,11 @@ dir = "_site/static_site"
 static_site_dir = "/path/to/your/static/site/content"
 
 [targets.huggingface]
-enabled = false
+enabled = true
 dir = "_site/huggingface"
 repo_id = "mjboothaus/test_marimo_publish"
 template = "templates/huggingface.html.j2"
+readme = "huggingface/README.md"
 
 [targets.local]
 enabled = true
@@ -27,8 +28,10 @@ dir = "_site/local"
 [targets.testing]
 enabled = true
 dir = "_site/testing"
-
-[targets.posit_connect]
-enabled = false
-dir = "_site/posit_connect"
-connect_url = ""
+#
+# Unsupported ---------------
+#
+# [targets.posit_connect]
+# enabled = false
+# dir = "_site/posit_connect"
+# connect_url = ""

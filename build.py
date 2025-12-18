@@ -15,6 +15,19 @@ from loguru import logger
 load_dotenv()
 
 
+def copy_real_readme(target_config):
+    readme_src = Path(target_config.get("readme"))
+    target_dir = Path(target_config["dir"])
+    readme_dst = target_dir / "README.md"
+    if readme_src.exists():
+        shutil.copy(readme_src, readme_dst)
+        print(f"Copied README from {readme_src} to {readme_dst}")
+        print("README content preview:")
+        print(readme_dst.read_text()[:200])
+    else:
+        print(f"WARNING: README source {readme_src} does not exist. Skipping.")
+
+
 def find_local_imports(
     notebook_path: Path, base_package: str = "local_module"
 ) -> list[Path]:
@@ -96,7 +109,11 @@ class ConfigLoader:
                 (target_dir / "notebooks").mkdir(exist_ok=True)
                 (target_dir / "apps").mkdir(exist_ok=True)
                 (target_dir / "assets").mkdir(exist_ok=True)
-                if not (target_dir / "README.md").exists():
+                # Only create a default README.md if not Hugging Face
+                if (
+                    target.replace("_", "").lower() != "huggingface"
+                    and not (target_dir / "README.md").exists()
+                ):
                     (target_dir / "README.md").write_text(
                         f"# {target.replace('_', ' ').title()} Target\n"
                     )
@@ -344,6 +361,7 @@ class BuildManager:
         apps = self.exporter.export_folder(
             self.config.get("global", "apps_dir", "apps"), target_dir, as_app=True
         )
+
         # Automatically detect and copy local imports for notebooks and apps
         self.copy_local_imports_for_notebooks(
             notebooks + apps, target_dir, base_package="local_module"
@@ -352,6 +370,10 @@ class BuildManager:
         if notebooks or apps:
             IndexGenerator(self.template_path).generate(target_dir, notebooks, apps)
         self.asset_manager.copy_assets(target_dir)
+
+        if target_name == "huggingface":
+            copy_real_readme(target_config)
+
         publisher = self._get_publisher(target_name, target_config)
         return publisher.publish(target_dir) if publisher else False
 
